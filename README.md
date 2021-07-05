@@ -6,7 +6,7 @@ This action installs the `ibmcloud` CLI command for use in your github actions w
 
 ```yaml
 - name: Setup IBM Cloud CLI
-  uses: Pitchler/actions-setup-ibmcloud@1.0.0
+  uses: Pitchler/actions-setup-ibmcloud@v1.0.0
 - run: |-
   ibmcloud help
 ```
