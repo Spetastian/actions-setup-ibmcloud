@@ -1,0 +1,5 @@
+name: 'Setup IBM Cloud CLI'
+description: 'Installs IBM Cloud CLI for use in actions'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
