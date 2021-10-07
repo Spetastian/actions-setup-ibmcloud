@@ -1,5 +1,10 @@
 name: 'Setup IBM Cloud CLI'
 description: 'Installs IBM Cloud CLI for use in actions'
+inputs:
+  version:  # id of input
+    description: 'Version of IBM Cloud CLI to download'
+    required: true
+    default: 'latest'
 runs:
   using: 'node12'
   main: 'dist/index.js'

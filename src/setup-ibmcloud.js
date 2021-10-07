@@ -4,6 +4,7 @@ const toolCache = require("@actions/tool-cache");
 const core = require("@actions/core");
 
 const repoHost = "clis.cloud.ibm.com";
+const version = core.getInput("version") || "latest";
 
 function resolveDownloadURL() {
   const osName = os.platform().toLowerCase();
@@ -26,7 +27,7 @@ function resolveDownloadURL() {
     throw new Error(`Platform ${osName} not supported`);
   }
 
-  return `https://${repoHost}/download/bluemix-cli/latest/${platform}`;
+  return `https://${repoHost}/download/bluemix-cli/${version}/${platform}`;
 }
 
 async function downloadAndExtract() {
