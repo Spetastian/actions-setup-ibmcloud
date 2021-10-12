@@ -3,7 +3,6 @@ const path = require("path");
 const toolCache = require("@actions/tool-cache");
 const core = require("@actions/core");
 
-const repoHost = "clis.cloud.ibm.com";
 const version = core.getInput("version") || "latest";
 
 function resolveDownloadURL() {
@@ -13,9 +12,9 @@ function resolveDownloadURL() {
 
   if (osName === "linux") {
     if (osArch === "x64" || osArch === "x86_64") {
-      platform = "linux64";
+      platform = "amd64";
     } else if (osArch === "x86" || osArch === "i686") {
-      platform = "linux32";
+      platform = "386";
     } else if (osArch === "ppc64le") {
       platform = "ppc64le";
     } else if (osArch === "s390x") {
@@ -27,7 +26,12 @@ function resolveDownloadURL() {
     throw new Error(`Platform ${osName} not supported`);
   }
 
-  return `https://${repoHost}/download/bluemix-cli/${version}/${platform}`;
+  return `https://download.clis.cloud.ibm.com/ibm-cloud-cli/${version}/IBM_Cloud_CLI_${version}_${platform}.tar.gz`;
+
+  /*   https://download.clis.cloud.ibm.com/ibm-cloud-cli/2.1.1/IBM_Cloud_CLI_2.1.1_amd64.tar.gz
+  https://download.clis.cloud.ibm.com/ibm-cloud-cli/2.1.1/IBM_Cloud_CLI_2.1.1_386.tar.gz
+  https://download.clis.cloud.ibm.com/ibm-cloud-cli/2.1.1/IBM_Cloud_CLI_2.1.1_ppc64le.tar.gz
+  https://download.clis.cloud.ibm.com/ibm-cloud-cli/2.1.1/IBM_Cloud_CLI_2.1.1_s390x.tar.gz */
 }
 
 async function downloadAndExtract() {
