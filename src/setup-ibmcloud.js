@@ -47,7 +47,7 @@ async function downloadAndExtract() {
 }
 
 async function installTool(extractedPath) {
-  const toolRoot = path.join(extractedPath, "bin");
+  const toolRoot = path.join(extractedPath, "Bluemix_CLI", "bin");
   const toolPath = await toolCache.cacheDir(toolRoot, "ibmcloud", version);
   return toolPath;
 }
