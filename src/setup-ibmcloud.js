@@ -28,13 +28,11 @@ function resolveDownloadURL() {
     throw new Error(`Platform ${osName} not supported`);
   }
 
-  const downloadUrl = `https://download.clis.cloud.ibm.com/ibm-cloud-cli/${version}/IBM_Cloud_CLI_${version}_${osName}_${platform}.tgz`;
+  const downloadUrl = `https://download.clis.cloud.ibm.com/ibm-cloud-cli/${version}/IBM_Cloud_CLI_${version}_${platform}.tar.gz`;
 
   console.info("CLI download url", downloadUrl);
 
   return downloadUrl;
-
-  //https://download.clis.cloud.ibm.com/ibm-cloud-cli/2.1.1/binaries/IBM_Cloud_CLI_2.1.1_linux_amd64.tgz
 }
 
 async function downloadAndExtract() {
