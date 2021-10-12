@@ -38,7 +38,9 @@ function resolveDownloadURL() {
 }
 
 async function downloadAndExtract() {
-  const downloadURL = resolveDownloadURL();
+  //const downloadURL = resolveDownloadURL();
+  const downloadUrl = "https://clis.cloud.ibm.com/install/linux";
+
   console.info(`Downloading CLI tools from ${downloadURL}...`);
 
   const downloadPath = await toolCache.downloadTool(downloadURL);
