@@ -5270,7 +5270,7 @@ async function downloadAndExtract() {
 }
 
 async function installTool(extractedPath) {
-  const toolRoot = path.join(extractedPath, "ibmcloud_cli", "bin");
+  const toolRoot = path.join(extractedPath, "bin");
   const toolPath = await toolCache.cacheDir(toolRoot, "ibmcloud", version);
   return toolPath;
 }
@@ -5281,7 +5281,7 @@ module.exports.run = async function () {
     if (!toolPath) {
       console.info("Tool was not already installed.");
       const extractedPath = await downloadAndExtract();
-      console.log({ extractedPath });
+      console.log("extractedPath", extractedPath);
       console.info(`Installing tool from path ${extractedPath}...`);
       toolPath = await installTool(extractedPath);
     }
