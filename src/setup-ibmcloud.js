@@ -5,6 +5,8 @@ const core = require("@actions/core");
 
 const version = core.getInput("version") || "latest";
 
+console.log("version", version);
+
 function resolveDownloadURL() {
   const osName = os.platform().toLowerCase();
   const osArch = os.arch().toLowerCase();
@@ -28,7 +30,7 @@ function resolveDownloadURL() {
 
   const downloadUrl = `https://download.clis.cloud.ibm.com/ibm-cloud-cli/${version}/IBM_Cloud_CLI_${version}_${osName}_${platform}.tgz`;
 
-  console.log("CLI download url", downloadUrl);
+  console.info("CLI download url", downloadUrl);
 
   return downloadUrl;
 
@@ -46,14 +48,14 @@ async function downloadAndExtract() {
 }
 
 async function installTool(extractedPath) {
-  const toolRoot = path.join(extractedPath, "Bluemix_CLI", "bin");
-  const toolPath = await toolCache.cacheDir(toolRoot, "ibmcloud", "latest");
+  const toolRoot = path.join(extractedPath, "ibmcloud_cli", "bin");
+  const toolPath = await toolCache.cacheDir(toolRoot, "ibmcloud", version);
   return toolPath;
 }
 
 module.exports.run = async function () {
   try {
-    let toolPath = toolCache.find("ibmcloud", "latest");
+    let toolPath = toolCache.find("ibmcloud", version);
     if (!toolPath) {
       console.info("Tool was not already installed.");
       const extractedPath = await downloadAndExtract();
@@ -61,6 +63,8 @@ module.exports.run = async function () {
       console.info(`Installing tool from path ${extractedPath}...`);
       toolPath = await installTool(extractedPath);
     }
+
+    console.info("toolPath", toolPath);
 
     core.addPath(toolPath);
   } catch (error) {
