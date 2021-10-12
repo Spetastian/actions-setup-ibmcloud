@@ -26,12 +26,13 @@ function resolveDownloadURL() {
     throw new Error(`Platform ${osName} not supported`);
   }
 
-  return `https://download.clis.cloud.ibm.com/ibm-cloud-cli/${version}/IBM_Cloud_CLI_${version}_${platform}.tar.gz`;
+  const downloadUrl = `https://download.clis.cloud.ibm.com/ibm-cloud-cli/${version}/IBM_Cloud_CLI_${version}_${osName}_${platform}.tgz`;
 
-  /*   https://download.clis.cloud.ibm.com/ibm-cloud-cli/2.1.1/IBM_Cloud_CLI_2.1.1_amd64.tar.gz
-  https://download.clis.cloud.ibm.com/ibm-cloud-cli/2.1.1/IBM_Cloud_CLI_2.1.1_386.tar.gz
-  https://download.clis.cloud.ibm.com/ibm-cloud-cli/2.1.1/IBM_Cloud_CLI_2.1.1_ppc64le.tar.gz
-  https://download.clis.cloud.ibm.com/ibm-cloud-cli/2.1.1/IBM_Cloud_CLI_2.1.1_s390x.tar.gz */
+  console.log("CLI download url", downloadUrl);
+
+  return downloadUrl;
+
+  //https://download.clis.cloud.ibm.com/ibm-cloud-cli/2.1.1/binaries/IBM_Cloud_CLI_2.1.1_linux_amd64.tgz
 }
 
 async function downloadAndExtract() {
